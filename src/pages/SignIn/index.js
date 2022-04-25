@@ -24,8 +24,8 @@ export default function SignIn() {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     if (auth) {
-      navigate("/timeline");
-    } //eslint-disable-next-line
+      navigate("/tests/disciplines");
+    }
   }, [auth]);
 
   const [formData, setFormData] = useState({
@@ -47,7 +47,7 @@ export default function SignIn() {
       signin(data.token);
       setUser(data.user);
       localStorage.setItem("user", JSON.stringify(data.user));
-      navigate("/timeline");
+      navigate("/tests/disciplines");
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -75,7 +75,7 @@ export default function SignIn() {
     <Container>
       <Logo src={logo} alt="logo"></Logo>
       <Form onSubmit={(e) => handleSubmit(e)}>
-        <Title>cadastro</Title>
+        <Title>Login</Title>
         <GHbutton>Entrar com o GITHUB</GHbutton>
         <Input
           type="email"

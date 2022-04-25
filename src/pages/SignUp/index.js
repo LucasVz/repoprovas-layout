@@ -23,11 +23,12 @@ export default function SignUp() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    confirmPassword: ""
   });
+  //const [confirmPassword, setConfirmPassword] = useState('');
 
   function handleChange({ target }) {
     setFormData({ ...formData, [target.name]: target.value });
+    //setConfirmPassword(target.value)
   }
 
   async function handleSubmit(e) {
@@ -47,20 +48,20 @@ export default function SignUp() {
         confirmButtonColor: "#9f9adb",
         color: "#fff",
       });
+      navigate("/");
       return;
     }
-    console.log(user.password)
-    console.log(user.confirmPassword)
-    if(user.password !== user.confirmPassword){
-      Swal.fire({
-        title: "Oops :(",
-        text: "Sua senha precisa ser igual a confirmação de de senha",
-        background: "#d66767",
-        confirmButtonColor: "#9f9adb",
-        color: "#fff",
-      });
-      return;
-    }
+
+    // if(user.password !== confirmPassword){
+    //   Swal.fire({
+    //     title: "Oops :(",
+    //     text: "Sua senha precisa ser igual a confirmação de de senha",
+    //     background: "#d66767",
+    //     confirmButtonColor: "#9f9adb",
+    //     color: "#fff",
+    //   });
+    //   return;
+    // }
 
     try {
       await api.createUser(user);
@@ -110,14 +111,14 @@ export default function SignUp() {
           value={formData.password}
           required
         />
-        <Input
+        {/* <Input
           type="password"
           placeholder="Confirme sua senha"
           onChange={(e) => handleChange(e)}
           name="confirmPassword"
-          value={formData.confirmPassword}
+          value={confirmPassword}
           required
-        />
+        /> */}
         <div>
           <StyledLink to="/">Já possuo cadastro</StyledLink>
           <Button type="submit" disabled={loading}>
